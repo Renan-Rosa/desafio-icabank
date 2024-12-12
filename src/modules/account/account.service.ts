@@ -65,7 +65,7 @@ export class AccountService {
     }
   }
 
-  // Pega os dados da conta ( balanço ...)
+  // Retorna os dados da conta ( balanço ...)
   async getStatement(accountId: string): Promise<{ balance: number }> {
     const account = this.accounts.find((acc) => acc.accountId === accountId);
     if (!account) {

@@ -15,7 +15,7 @@ export class TransferService {
       const response = await lastValueFrom(
         this.httpService.post(mockBackendUrl, transferData, {
           headers: {
-            Authorization: `Bearer ${accessToken}`, // Header com o token correto
+            Authorization: `Bearer ${accessToken}`,
           },
         }),
       );

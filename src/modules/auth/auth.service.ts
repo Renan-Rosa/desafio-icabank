@@ -20,10 +20,12 @@ export class AuthService {
     client_secret: string,
   ): Promise<{ message: string }> {
     const userExists = this.users.find((user) => user.client_id === client_id);
+    // Verifica se o usuário já existe
     if (userExists) {
       throw new BadRequestException('User already exists');
     }
 
+    // Registra o usuário dentro do banco simulado
     this.users.push({ client_id, client_secret });
     return { message: 'User registered successfully' };
   }

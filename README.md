@@ -1,6 +1,8 @@
-# Projeto Simulado de API - NestJS
+# Projeto API Bancária - NestJS 
 
 Este projeto implementa uma API simulada usando o framework [NestJS](https://nestjs.com/). O objetivo é criar endpoints para manipular contas bancárias simuladas e realizar transferências, com integrações em mock backends.
+
+> Projeto feito e testado dentro do WSL (Windows Subsystem Linux)
 
 ## Recursos Implementados
 
@@ -51,7 +53,9 @@ Este projeto implementa uma API simulada usando o framework [NestJS](https://nes
    Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
    ```env
-   MOCK_URL=<url-do-mock-backend>
+   MOCK_URL=<url-do-mock-backend | http://localhost:8080>
+   NODE_ENV=<dev | prod | test>
+   PORT=<porta>
    ```
 
 4. Execute o projeto:
@@ -63,6 +67,69 @@ Este projeto implementa uma API simulada usando o framework [NestJS](https://nes
    A API estará disponível em `http://localhost:3000`.
 
 ## Endpoints Disponíveis
+
+**Extensão REST CLIENT**
+- Foi usado uma extensão como client http chamada [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+para fazer as requisições para os end-points.
+
+1. Abra o seu Vscode (Extensões)
+
+2. Pesquise por REST Client (Faça a instalação)
+
+3. Acesse o arquivo client.http na raiz do projeto e clique em "Send request" 
+
+4. Pronto você já pode testar todas as rotas disponíveis
+
+
+### Registro de Usuário
+
+> ⚠️ Atenção é usar os mesmos valores do exemplo para que seja aceito dentro do mock ⚠️
+
+**POST** `/auth/register`
+
+- **Headers:**
+  - `Content-Type`: `application/json`
+
+- **Body:**
+
+  ```json
+  {
+    "client_id": "test",
+    "client_secret": "secret"
+  }
+  ```
+
+- **Resposta:**
+
+  ```json
+  {
+    "message": "User registered successfully"
+  }
+  ```
+
+### Login de Usuário
+
+**POST** `/auth/login`
+
+- **Headers:**
+  - `Content-Type`: `application/json`
+
+- **Body:**
+
+  ```json
+  {
+    "client_id": "test",
+    "client_secret": "secret"
+  }
+  ```
+
+- **Resposta:**
+
+  ```json
+  {
+    "access_token": "mocked-access-token"
+  }
+  ```
 
 ### Abertura de Conta
 
@@ -131,57 +198,11 @@ Este projeto implementa uma API simulada usando o framework [NestJS](https://nes
   }
   ```
 
-### Autenticação (AUTH)
-
-#### Registro de Usuário
-
-**POST** `/auth/register`
-
-- **Headers:**
-  - `Content-Type`: `application/json`
-
-- **Body:**
-
-  ```json
-  {
-    "client_id": "test",
-    "client_secret": "secret"
-  }
-  ```
-
-- **Resposta:**
-
-  ```json
-  {
-    "message": "User registered successfully"
-  }
-  ```
-
-#### Login de Usuário
-
-**POST** `/auth/login`
-
-- **Headers:**
-  - `Content-Type`: `application/json`
-
-- **Body:**
-
-  ```json
-  {
-    "client_id": "test",
-    "client_secret": "secret"
-  }
-  ```
-
-- **Resposta:**
-
-  ```json
-  {
-    "access_token": "mocked-access-token"
-  }
-  ```
-
 ### Verificação de Identidade (KYC)
+
+> Atenção: Extensões permitidas ('.jpg', '.jpeg', '.png', '.pdf')
+
+- Já existe dois arquivos de teste dentro da pasta ./docs no projeto para ser testado, basta clicar em "Send Request"
 
 #### Upload de Selfie
 

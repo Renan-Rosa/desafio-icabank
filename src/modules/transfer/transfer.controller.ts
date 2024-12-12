@@ -21,10 +21,7 @@ export class TransferController {
     if (!authorization) {
       throw new BadRequestException('Authorization token is required');
     }
-
     const accessToken = authorization.split(' ')[1]; // Remove o prefixo 'Bearer'
-
-    // Chama o serviço com os dados necessários
     return await this.transferService.transferFunds(accessToken, transferData);
   }
 }

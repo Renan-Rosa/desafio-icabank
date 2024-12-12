@@ -5,7 +5,7 @@ import { TransferService } from './transfer.service';
 import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [HttpModule], // Importa o HttpModule para fazer as requisições HTTP
+  imports: [HttpModule],
   controllers: [TransferController],
   providers: [TransferService],
 })

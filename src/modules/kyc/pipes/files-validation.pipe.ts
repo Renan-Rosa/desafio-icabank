@@ -3,11 +3,11 @@ import * as path from 'path';
 
 @Injectable()
 export class FileValidationPipe implements PipeTransform {
-  private readonly allowedExtensions = ['.jpg', '.jpeg', '.png', '.pdf', '']; // Extensões permitidas
+  private readonly allowedExtensions = ['.jpg', '.jpeg', '.png', '.pdf']; // Extensões permitidas
   private readonly maxFileSize = 5 * 1024 * 1024; // Limite de 5MB
 
   transform(value: any) {
-    const file = value[0]; // Para o FileInterceptor, o arquivo estará em value[0]
+    const file = value[0];
 
     if (!file) {
       throw new BadRequestException('File not found');
