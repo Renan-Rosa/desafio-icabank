@@ -1,0 +1,100 @@
+@baseUrl = http://localhost:3000
+@accessToken = {{auth_login.response.body.access_token}}
+
+## AUTH ##  
+
+# @name auth_register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "client_id": "test",
+  "client_secret": "secret"
+}
+
+###
+
+# @name auth_login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "client_id": "test",
+  "client_secret": "secret"
+}
+
+###
+
+## ACCOUNT ##
+
+# @name account_open
+POST {{baseUrl}}/account/open
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "client_id": "test"
+}
+
+###
+
+# @name account_statement
+GET {{baseUrl}}/account/statement?accountId=acc-1734029589862
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+## TRANSFER ##
+
+# @name transfer
+POST {{baseUrl}}/transfer
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "amount": 100,
+  "account": "acc-1697164835632",
+  "currency": "BRL"
+}
+
+###
+
+## KYC ##
+
+# @name kyc_upload_selfie
+POST {{baseUrl}}/kyc/upload-doc
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{accessToken}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+file
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="selfie.jpg"
+Content-Type: file/png
+
+< ./docs/selfie.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# @name kyc_upload_doc
+POST {{baseUrl}}/kyc/upload-doc
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{accessToken}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+file
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="doc.pdf"
+Content-Type: file/pdf
+
+< ./docs/doc.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
